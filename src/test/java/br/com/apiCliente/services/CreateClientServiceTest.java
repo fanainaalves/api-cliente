@@ -1,5 +1,8 @@
 package br.com.apiCliente.services;
 
+import br.com.apiCliente.modules.client.entities.Client;
+import br.com.apiCliente.modules.client.repositories.ClientMemoryRepository;
+import br.com.apiCliente.modules.client.services.CreateClientService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -11,7 +14,7 @@ public class CreateClientServiceTest {
 
         //criar um novo cliente
         Client client = new Client();
-        client.setName("Nome do cliente");
+        client.setNome("Nome do cliente");
         client.setCpf("Cpf do cliente");
         client.setDataNascimento("01/01/2001");
 
@@ -28,7 +31,7 @@ public class CreateClientServiceTest {
     @Test(expected = Error.class)
     public void createdNotBeNewClientIfExists(){
         Client client = new Client();
-        client.setName("Nome do cliente");
+        client.setNome("Nome do cliente");
         client.setCpf("Cpf do cliente");
         client.setDataNascimento("01/01/2001");
 
