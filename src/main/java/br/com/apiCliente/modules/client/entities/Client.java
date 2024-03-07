@@ -1,27 +1,27 @@
 package br.com.apiCliente.modules.client.entities;
 
-
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 @Document(collection = "ClienteAPI")
 public class Client {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private String id;
     private String nome;
     private String cpf;
     private String dataNascimento;
+    private String email;
+    private String telefone;
+    private String endereco;
 
 }

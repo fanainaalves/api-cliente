@@ -6,9 +6,4 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface ClientRepository extends MongoRepository<Client, String> {
-
-    public Client findByName(String nome);
-
-    public Client save(Client client);
-}
+public interface ClientRepository extends MongoRepository<Client, String> {}
