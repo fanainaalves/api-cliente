@@ -18,11 +18,11 @@ public class ClientController {
 
     @GetMapping
     public List<Client> listClients(){
-//        return repository.findAll();
-        return Arrays.asList(Client.builder()
-                .nome("Fanny")
-                .email("fanaina@gmail.com")
-                .telefone("1111-2222").build());
+        return repository.findAll();
+//        return Arrays.asList(Client.builder()
+//                .nome("Fanny")
+//                .email("fanaina@gmail.com")
+//                .telefone("1111-2222").build());
     }
 
     @PostMapping

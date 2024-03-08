@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @Builder
-@Document(collection = "ClienteAPI")
+@Document(collection = "clients")
 public class Client implements Serializable {
 
     @Id
