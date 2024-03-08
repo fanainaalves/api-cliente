@@ -25,7 +25,7 @@ public class ClientController {
                 .telefone("1111-2222").build());
     }
 
-    @PostMapping
+    @PostMapping("/clients")
     public Client createClient(@RequestBody Client entity){
         entity.setId(ObjectId.get().toString());
         return repository.save(entity);
