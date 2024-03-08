@@ -3,17 +3,17 @@ package br.com.apiCliente.modules.client.entities;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
 
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
 @Document(collection = "ClienteAPI")
-public class Client {
+public class Client implements Serializable {
 
     @Id
     private String id;
@@ -22,6 +22,11 @@ public class Client {
     private String dataNascimento;
     private String email;
     private String telefone;
-    private String endereco;
+//    private String endereco;
+
+
+    public Client(){
+        super();
+    }
 
 }
