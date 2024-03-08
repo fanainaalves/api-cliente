@@ -4,8 +4,8 @@ import br.com.apiCliente.ApiClienteApplicationTests;
 import br.com.apiCliente.modules.client.entities.Client;
 import br.com.apiCliente.modules.controller.ClientController;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,19 +20,18 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+
 public class ClientControllerTest extends ApiClienteApplicationTests {
 
-    @Autowired
+
     private MockMvc mockMvc;
 
     @Autowired
     private ClientController clientController;
 
-    @Before
+    @BeforeEach
     public void setUp(){
-        ClientController clientController = new ClientController();
+//        ClientController clientController = new ClientController();
         this.mockMvc = MockMvcBuilders.standaloneSetup(clientController).build();
     }
 

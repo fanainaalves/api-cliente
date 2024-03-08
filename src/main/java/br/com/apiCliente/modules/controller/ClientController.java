@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/clients")
+@RequestMapping("/clients")
 public class ClientController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class ClientController {
                 .telefone("1111-2222").build());
     }
 
-    @PostMapping("/clients")
+    @PostMapping
     public Client createClient(@RequestBody Client entity){
         entity.setId(ObjectId.get().toString());
         return repository.save(entity);
