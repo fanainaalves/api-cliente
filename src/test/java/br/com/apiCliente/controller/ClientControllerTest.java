@@ -68,7 +68,7 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
     @Order(3)
     public void testUpdate() throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.put("/clients/65eb10c62b02550b026904cc")
-                .content(asJsonString(new Client("65eb10c62b02550b026904cc","Fanaina","cpf", "DataNac", "email", "telefone")))
+                .content(asJsonString(new Client(null,"Fanaina","cpf", "DataNac", "email", "telefone")))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
