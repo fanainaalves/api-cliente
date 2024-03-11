@@ -22,13 +22,13 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
 
 
     private MockMvc mockMvc;
+    private String id;
 
     @Autowired
     private ClientController clientController;
 
     @BeforeEach
     public void setUp(){
-//        ClientController clientController = new ClientController();
         this.mockMvc = MockMvcBuilders.standaloneSetup(clientController).build();
     }
 
@@ -39,7 +39,6 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty());
     }
-    //createClient
 
     @Test
     public void TestCreateClient() throws Exception{
@@ -52,7 +51,17 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
     }
 
     @Test
-    public void saveClients(){
+    public void testUpdate() throws Exception{
+        this.mockMvc.perform(MockMvcRequestBuilders.put("/clients")
+                .content(asJsonString(new Client("65eb10c62b02550b026904cc","Fanaina","cpf", "DataNac", "email", "telefone")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists());
+    }
+
+    @Test
+    public void testSaveClients(){
         Client client = new Client("1", "Fanaina","cpf", "DataNac", "email", "telefone");
     }
 
