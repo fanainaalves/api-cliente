@@ -22,7 +22,7 @@ public class ClientController {
     ClientRepository repository;
 
     @GetMapping
-    public List<Client> listClients(){
+    public List<Client> listClient(){
         return clientService.findAll();
         /*return Arrays.asList(Client.builder()
                 .nome("Fanny")
@@ -32,7 +32,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Client> get(@PathVariable String id){
+    public Optional<Client> getClient(@PathVariable String id){
         return Optional.ofNullable(clientService.findById(id));
     }
 
@@ -43,12 +43,12 @@ public class ClientController {
     }
 
     @PutMapping("/{id}")
-    public Client update(@PathVariable String id, @RequestBody Client entity){
+    public Client updateClient(@PathVariable String id, @RequestBody Client entity){
         return clientService.update(id, entity);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable String id){
+    public void deleteClient(@PathVariable String id){
         clientService.delete(id);
     }
 
