@@ -1,18 +1,14 @@
 package br.com.apiCliente.modules.controller;
 
 import br.com.apiCliente.modules.client.dto.ClientDTO;
-import br.com.apiCliente.modules.client.entities.Client;
 import br.com.apiCliente.modules.client.repositories.ClientRepository;
 import br.com.apiCliente.modules.client.services.ClientService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/clients")
