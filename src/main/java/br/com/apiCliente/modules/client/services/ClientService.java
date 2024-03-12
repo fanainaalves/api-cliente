@@ -1,5 +1,6 @@
 package br.com.apiCliente.modules.client.services;
 
+import br.com.apiCliente.modules.client.dto.ClientDTO;
 import br.com.apiCliente.modules.client.entities.Client;
 import br.com.apiCliente.modules.client.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,27 +14,36 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
-    public List<Client> findAll(){
-        return clientRepository.findAll();
+    public List<ClientDTO> findAll(){
+        List<Client> listEntity = clientRepository.findAll();
+        List<ClientDTO> listDTO = listEntity.stream().map(e -> new ClientDTO(e)).toList();
+        return listDTO;
     }
 
-    public Client create(Client entity){
-        return clientRepository.save(entity);
+    public ClientDTO create(ClientDTO entity){
+        Client client = new Client(entity);
+        clientRepository.save(client);
+        ClientDTO clientDTO = new ClientDTO(client);
+        return clientDTO;
     }
 
-    public Client findById(String id){
-        return clientRepository.findById(id).get();
+    public ClientDTO findById(String id){
+        Client client = clientRepository.findById(id).get();
+        ClientDTO clientDTO = new ClientDTO(client);
+        return clientDTO;
     }
 
-    public Client update(String id, Client client){
+    public ClientDTO update(String id, ClientDTO clientDTO){
         Client entity = clientRepository.findById(id).get();
-        entity.setNome(client.getNome());
-        entity.setCpf(client.getCpf());
-        entity.setEmail(client.getEmail());
-        entity.setTelefone(client.getTelefone());
-        entity.setDataNascimento(client.getDataNascimento());
-
-        return clientRepository.save(entity);
+        entity.setNome(clientDTO.getNome());
+        /*entity.setCpf(clientDTO.getCpf());
+        entity.setEmail(clientDTO.getEmail());
+        entity.setTelefone(clientDTO.getTelefone());
+        entity.setDataNascimento(clientDTO.getDataNascimento());
+        */
+        clientRepository.save(entity);
+        ClientDTO newClientDTO = new ClientDTO(entity);
+        return newClientDTO;
     }
 
     public void delete(String id){
