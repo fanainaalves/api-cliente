@@ -2,6 +2,7 @@ package br.com.apiCliente.controller;
 
 import br.com.apiCliente.ApiClienteApplication;
 import br.com.apiCliente.ApiClienteApplicationTests;
+import br.com.apiCliente.modules.client.dto.ClientDTO;
 import br.com.apiCliente.modules.client.entities.Client;
 import br.com.apiCliente.modules.controller.ClientController;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,7 +43,7 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
     @Order(0)
     public void testCreateClient() throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.post("/clients")
-                        .content(asJsonString(new Client(null, "Fanaina", "cpf", "DataNac", "email", "telefone")))
+                        .content(asJsonString(new ClientDTO(null, "Fanaina")))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -72,7 +73,7 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
     @Order(3)
     public void testUpdate() throws Exception{
         this.mockMvc.perform(MockMvcRequestBuilders.put("/clients/65ef65aeb7757455d89c52a8")
-                .content(asJsonString(new Client(null,"Maria","cpf", "DataNac", "email", "telefone")))
+                .content(asJsonString(new ClientDTO(null,"Maria")))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -84,7 +85,7 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
     public void testDelete() throws Exception{
         MvcResult result = this.mockMvc.perform(MockMvcRequestBuilders.post("/clients")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(new Client(null, "Fanaina","cpf", "DataNac", "email", "telefone")))
+                .content(asJsonString(new ClientDTO(null, "Fanaina")))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
@@ -104,7 +105,7 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
     @Test
     @Order(5)
     public void testSaveClients(){
-        Client client = new Client("1", "Fanaina","cpf", "DataNac", "email", "telefone");
+        ClientDTO clientDTO = new ClientDTO(null, "Maria");
     }
 
     public static String asJsonString(final Object obj){
