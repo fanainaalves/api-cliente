@@ -32,8 +32,8 @@ public class ClientController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Client> getClient(@PathVariable String id){
-        return Optional.ofNullable(clientService.findById(id));
+    public Client findById(@PathVariable String id){
+        return clientService.findById(id);
     }
 
     @PostMapping

@@ -1,5 +1,6 @@
 package br.com.apiCliente.controller;
 
+import br.com.apiCliente.ApiClienteApplication;
 import br.com.apiCliente.ApiClienteApplicationTests;
 import br.com.apiCliente.modules.client.entities.Client;
 import br.com.apiCliente.modules.controller.ClientController;
@@ -9,7 +10,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -20,7 +23,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+@SpringBootTest
+@ActiveProfiles("test")
 public class ClientControllerTest extends ApiClienteApplicationTests {
 
     private MockMvc mockMvc;
@@ -57,7 +61,7 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
     @Test
     @Order(2)
     public void testFindByID() throws Exception{
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/clients/65eb10c62b02550b026904cc"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/clients/65ef65aeb7757455d89c52a8"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
@@ -67,8 +71,8 @@ public class ClientControllerTest extends ApiClienteApplicationTests {
     @Test
     @Order(3)
     public void testUpdate() throws Exception{
-        this.mockMvc.perform(MockMvcRequestBuilders.put("/clients/65eb10c62b02550b026904cc")
-                .content(asJsonString(new Client(null,"Fanaina","cpf", "DataNac", "email", "telefone")))
+        this.mockMvc.perform(MockMvcRequestBuilders.put("/clients/65ef65aeb7757455d89c52a8")
+                .content(asJsonString(new Client(null,"Maria","cpf", "DataNac", "email", "telefone")))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
